@@ -1,0 +1,220 @@
+/*************** Reset *********************/
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+body{
+    background-color: var(--bodybg);
+     font-family: "Fira Code", monospace;
+  font-optical-sizing: auto;
+  font-style: normal;
+  padding: 1rem;
+  cursor: pointer;
+  transition: background-color 1s ease;
+}
+
+main{
+    display: flex;
+     background-color: var(--mainbg);
+     padding: 1rem;
+     border-radius: 20px;
+     width: 80%;
+     margin: auto;
+     gap: 1rem;
+     margin-top: 1rem;
+      transition: background-color 1s ease;
+}
+
+#originalList{
+    background-color: var(--ogList);
+    flex: 1;
+     padding: 1rem;
+     padding-block: 2rem;
+       border-radius: 20px;
+}
+
+#doneList{
+    background-color: var(--doneList);
+    animation: rainbow 2s ease-in-out infinite alternate;
+     flex: 1;
+      padding: 1rem;
+     padding-block: 2rem;
+       border-radius: 20px;
+}
+
+header{
+    display: flex;
+    height: 4rem;
+    align-items: center;
+    padding: 1rem;
+    background-color: var(--headerbg);
+     border-radius: 20px;
+     justify-content: space-between;
+}
+
+ul{
+    display: flex;
+        flex-direction: column;
+    gap: 1rem;
+}
+
+li{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    background-color: var(--taskbg);
+       border-radius: 10px;
+       padding: 1rem;
+}
+
+/*laver flueben*/
+.customCheckbox {
+    display: inline-flex;
+    align-items: center;
+    margin-right: 10px;
+}
+
+.customCheckbox input {
+    position: absolute;
+    opacity: 0;
+}
+
+.customCheckbox span {
+    width: 1rem;
+    height: 1rem;
+    background-color: #e7e7ce;
+    border: 2px solid #7e7d53;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.customCheckbox input:checked + span {
+    background-color: #83a883;
+    border-color: #495e49;
+}
+
+.customCheckbox input:checked + span::after {
+    content: "";
+    display: block;
+    width: 4px;
+    height: 8px;
+    margin: 1px 0 0 4px;
+    border: solid white; /*border laver to sider af et hjørne */
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg); /*transformerer dem til et flueben*/
+}
+
+.liFlex{
+    display: flex;
+    flex: 1;
+    justify-content: space-between;
+    align-items: center;
+     position: relative;
+}
+
+.liFlex .dateInput {
+    position: absolute;
+    right: 250px;
+    top: 100%;
+
+    width: 1px;
+    height: 1px;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.calendarBtn,
+.delete{
+    border: none;
+    background: none;
+    padding: 0;
+}
+
+.calendarBtn{
+    margin-right: 10px;
+}
+
+.calendarBtn:hover,
+.delete:hover{
+    border: none;
+    background: none;
+    filter: brightness(80%)
+}
+
+.taskDate{
+    margin-left: auto;
+    align-self: center;
+}
+
+#showNumber {
+    margin-left: 1.4rem;
+}
+
+h1{
+    text-align: center;
+    color: #5b2e36;
+}
+
+a{
+    text-decoration: none;
+}
+
+button{
+padding: 1rem;
+padding-block: 0.5rem;
+background-color: #7592ab;
+color: #fff;
+border: none;
+  border-radius: 10px;
+  font-size: 1rem;
+   cursor: pointer;
+    font-family: "Fira Code", monospace;
+}
+
+button:hover{
+background-color: #bc96bf;
+}
+
+h4{
+    font-size: x-large;
+    color:#374737;
+    transition: font-size 2s ease;
+}
+
+h4:hover{
+    font-size: xx-large;
+}
+
+.taskText{
+    background-color: #f6e5e7;
+    width: 80%;
+    display: flex;
+       border-radius: 10px;
+       padding: 0.5rem;
+       margin-top: 1rem;
+          font-family: "Fira Code", monospace;
+}
+
+.createBtn{
+    margin-block: 1rem;
+}
+
+@media screen and (max-width: 600px){
+    main{
+        flex-direction: column;
+        gap: 1rem;
+        width: 100%;
+    }
+
+    input:not([type="checkbox"]){
+    width: 100%;
+}
+}

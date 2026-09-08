@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Victory To Do</title>
+
+    <!-- css styles -->
+    <link rel="stylesheet" href="styles/style.css">
+    <link rel="stylesheet" href="styles/theme.css">
+
+    <!-- js filer -->
+     <script src="js/theme.js" defer></script>
+     <script src="js/todo.js" defer></script>
+
+    <!-- Fonte -->
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300..700&display=swap" rel="stylesheet">
+</head>
+<body data-theme="light">
+    <header>
+        <a href="index.html"><h4 id="logo">TooDoo</h4></a>
+        <div>
+            <button id="clearBtn">clear list</button>
+            <button id="changeBtn">Dark mode</button>
+        </div>
+    </header>
+    <main>
+        <article id="originalList">
+             <h1>You have<span id="showNumber"></span> tasks</h1>
+             <input type="text" class="taskText">
+             <button class="createBtn">+ Add task</button>
+             
+             <ul class="taskList"></ul>
+        </article>
+
+        <article id="doneList">
+            <h1><span id="showNumber2"></span> completed</h1>
+            <ul class="doneList"></ul>
+        </article>
+    </main>
+</body>
+</html>

@@ -1,0 +1,26 @@
+------ !PLANEN! ------
+
+1. Bygge siden op med en opgave-liste 
+   (med input felt og create button) og en færdig-liste
+2. Gøre at create knap tilføjer opgave til array 
+   og displayer opgave som li i ul'en
+3. Brug localStorage til at gemme opgaverne
+4. Tilføj dato vælger som displayer valgt dato
+
+5. Gøre så "checked" opgaver kommer over i #doneList
+6. Gøre så man kan fortryde og rykke dem tilbage
+
+7. Gøre så man kan slette opgaver både i 
+   #taskList og #doneList
+8. Gøre så man kan clear alle opgaver fra siden
+
+9. Markere en task som “udendørs” og hente vejr 
+   via et gratis vejr-API
+
+
+
+
+
+
+
+
