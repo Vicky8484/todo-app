@@ -213,7 +213,7 @@ a{
 button{
 padding: 1rem;
 padding-block: 0.5rem;
-background-color: #7592ab;
+background-color: var(--buttonbg);
 color: #fff;
 border: none;
   border-radius: 10px;
@@ -223,7 +223,7 @@ border: none;
 }
 
 button:hover{
-background-color: #bc96bf;
+background-color: var(--buttonbghover);
 }
 
 h4{
@@ -237,7 +237,7 @@ h4:hover{
 }
 
 .taskText{
-    background-color: #f6e5e7;
+    background-color: var(--inputbg);
     width: 80%;
     display: flex;
     border-radius: 10px;

@@ -5,6 +5,9 @@
 --doneList: #e9e9aa;
 --headerbg: #83a883;
 --taskbg: #d8a3ac;
+--inputbg:#f6e5e7;
+--buttonbg:#7592ab;
+--buttonbghover: #bc96bf;
 }
 
 [data-theme="dark"]{
@@ -14,4 +17,7 @@
 --doneList: #a9a97d;
 --headerbg: #5a725a;
 --taskbg: #9a757b;
+--inputbg:#e0c3c7;
+--buttonbg:#688094;
+--buttonbghover: #886b8a;
 }
