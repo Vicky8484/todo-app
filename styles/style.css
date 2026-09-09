@@ -11,6 +11,8 @@ img {
   display: block;
 }
 
+/**********BODY + MAIN**********/
+
 body{
     background-color: var(--bodybg);
      font-family: "Fira Code", monospace;
@@ -33,21 +35,22 @@ main{
       transition: background-color 1s ease;
 }
 
+/**********OPGAVE LISTEN + DONE LISTEN**********/
 #originalList{
     background-color: var(--ogList);
     flex: 1;
      padding: 1rem;
      padding-block: 2rem;
-       border-radius: 20px;
+    border-radius: 20px;
 }
 
 #doneList{
     background-color: var(--doneList);
     animation: rainbow 2s ease-in-out infinite alternate;
-     flex: 1;
-      padding: 1rem;
-     padding-block: 2rem;
-       border-radius: 20px;
+    flex: 1;
+    padding: 1rem;
+    padding-block: 2rem;
+    border-radius: 20px;
 }
 
 header{
@@ -56,13 +59,15 @@ header{
     align-items: center;
     padding: 1rem;
     background-color: var(--headerbg);
-     border-radius: 20px;
-     justify-content: space-between;
+    border-radius: 20px;
+    justify-content: space-between;
 }
+
+/**********UL'EN + LI'ERNE**********/
 
 ul{
     display: flex;
-        flex-direction: column;
+    flex-direction: column;
     gap: 1rem;
 }
 
@@ -71,11 +76,48 @@ li{
     display: flex;
     align-items: center;
     background-color: var(--taskbg);
-       border-radius: 10px;
-       padding: 1rem;
+    border-radius: 10px;
+    padding: 1rem;
 }
 
-/*laver flueben*/
+.liFlex{
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+     position: relative;
+}
+
+.liFlex .dateInput {
+    position: absolute;
+    right: 250px;
+    top: 100%;
+
+    width: 1px;
+    height: 1px;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.flex{
+    display: flex;
+}
+
+.flexCol{
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    width: 100%;
+    min-width: 0;
+    gap: 0.8rem;
+    margin-left: 0;
+}
+
+.liFlex p{
+    margin: 0;
+}
+
+/**********CUSTOM CHECKBOXES**********/
 .customCheckbox {
     display: inline-flex;
     align-items: center;
@@ -101,6 +143,11 @@ li{
     border-color: #495e49;
 }
 
+.outdoorCheckbox input:checked + span{
+background-color: #a883a2;
+    border-color: #5c495e;
+}
+
 .customCheckbox input:checked + span::after {
     content: "";
     display: block;
@@ -112,25 +159,15 @@ li{
     transform: rotate(45deg); /*transformerer dem til et flueben*/
 }
 
-.liFlex{
+.outdoorLabel{
+    font-size: medium;
     display: flex;
-    flex: 1;
-    justify-content: space-between;
     align-items: center;
-     position: relative;
+    gap: 10px;
+    margin-left: 0;
 }
 
-.liFlex .dateInput {
-    position: absolute;
-    right: 250px;
-    top: 100%;
-
-    width: 1px;
-    height: 1px;
-    opacity: 0;
-    pointer-events: none;
-}
-
+/**********KALENDER KNAP**********/
 .calendarBtn,
 .delete{
     border: none;
@@ -150,10 +187,10 @@ li{
 }
 
 .taskDate{
-    margin-left: auto;
     align-self: center;
 }
 
+/***********H1'ER + A'er + KNAPPER**********/
 #showNumber {
     margin-left: 1.4rem;
 }
@@ -161,6 +198,12 @@ li{
 h1{
     text-align: center;
     color: #5b2e36;
+}
+
+#doneList h1{
+    text-align: center;
+    color: #5b532e;
+    margin-bottom: 1rem;
 }
 
 a{
@@ -197,17 +240,19 @@ h4:hover{
     background-color: #f6e5e7;
     width: 80%;
     display: flex;
-       border-radius: 10px;
-       padding: 0.5rem;
-       margin-top: 1rem;
-          font-family: "Fira Code", monospace;
+    border-radius: 10px;
+    padding: 0.5rem;
+    margin-top: 1rem;
+    font-family: "Fira Code", monospace;
 }
 
 .createBtn{
     margin-block: 1rem;
 }
 
-@media screen and (max-width: 600px){
+/**********MOBIL + TABLET VERSION**********/
+
+@media screen and (max-width: 1000px){
     main{
         flex-direction: column;
         gap: 1rem;
@@ -217,4 +262,13 @@ h4:hover{
     input:not([type="checkbox"]){
     width: 100%;
 }
+
+    .liFlex{
+        flex-wrap: wrap;
+        gap: 0.5rem;
+    }
+
+    .taskDate{
+        margin-left: 0;
+    }
 }

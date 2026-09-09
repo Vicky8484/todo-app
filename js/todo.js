@@ -29,11 +29,19 @@ deleteAllBtn.addEventListener("click", deleteAll);
 
 // Opretter en ny opgave ud fra det, brugeren har skrevet i inputfeltet
 function createTask(){
+    //Kontrollerer input-feltet, så en tekst lavet af mellemrum eller uden noget bliver afvist
+    if (taskInput.value.trim() === "") {
+    taskInput.focus();
+    return;
+}
+
     // Et objekt samler alle oplysninger om én opgave
     const taskObject = {
         taskTxt: taskInput.value, // Selve teksten på opgaven
         taskDone: false, // Nye opgaver er ikke færdige endnu
         taskDate: "", // Tilføjer en dato til hver ny opgave, som starter tom
+        // Bruges til at afgøre, om opgaven skal vurderes ud fra vejret
+        isOutdoor: false,
         id: self.crypto.randomUUID(), // Et unikt id til opgaven
     }
 
@@ -47,6 +55,28 @@ function createTask(){
     saveTasks();
     console.log(taskArr);
     renderList();
+}
+
+// Henter dagens nedbørsmængde fra Open-Meteo for den valgte dato
+async function getWeather(date){
+    // API'et bruger koordinaterne for København og returnerer nedbør i millimeter
+    const url = `https://api.open-meteo.com/v1/forecast?latitude=55.68&longitude=12.57&daily=precipitation_sum&timezone=auto&start_date=${date}&end_date=${date}`;
+    const svar = await fetch(url);
+    const data = await svar.json();
+
+    // Hvis API'et ikke kan finde vejrdata, gemmes ingen regnmængde
+    if(data.error){
+        return null
+    } else {
+        // Hent nedbørsmængden for den valgte dato fra API-svaret
+        return data.daily.precipitation_sum[0];
+    }
+}
+
+// Henter dags dato
+function getToday() {
+    const today = new Date(); // Opretter et Date-objekt med den aktuelle dato og tid
+    return today.toLocaleDateString("en-CA"); // Konverterer datoen til formatet YYYY-MM-DD, som input type="date" bruger
 }
 
 // Opdaterer tællerne (hvor mange opgaver/udførte opgaver der er)
@@ -68,30 +98,43 @@ function renderList(){
     // Gå gennem hver opgave og opret et HTML-li-element til den
     taskArr.forEach((task) => {
         const li = document.createElement("li");
+        
+        // En udendørs opgave kan ikke udføres, hvis der forventes mere end 0,3 mm regn
+        const kanIkkeUdfores = task.isOutdoor && task.rain > 0.3;
 
         // Opret en checkbox og tekst for opgaven
         // Hvis taskDone er true, får checkboxen attributten "checked"
        li.innerHTML = `
+
+    <article class="flexCol">
+    <div class="liFlex">
+
+    <div class="flex">
     <label class="customCheckbox">
     <input type="checkbox" ${task.taskDone ? "checked" : ""}>
     <span></span>
-</label>
+    </label>
 
-    <article class="liFlex">
-        <p>${task.taskTxt}</p>
+    <p>${task.taskTxt}</p>
+    </div>
 
-        <span class="taskDate">
-            ${task.taskDate || ""}
-        </span>
+    <div>
+    <span class="taskDate">${task.taskDate || ""}</span>
+    <button class="calendarBtn" type="button">🗓️</button>
+    <button class="delete" type="button">🗑️</button>
+    <input class="dateInput" type="date" min="${getToday()}" value="${task.taskDate || ""}">
+    </div>
 
-        <button class="calendarBtn" type="button">🗓️</button>
-        <button class="delete" type="button">🗑️</button>
+    </div>
+    
+    <label class="outdoorLabel customCheckbox outdoorCheckbox">
+    <input class="outdoorInput" type="checkbox" ${task.isOutdoor ? "checked" : ""}>
+    <span></span>
+    <!-- Vejrstatus vises kun, når opgaven er markeret som udendørs -->
+    Udendørs ${task.isOutdoor ? (kanIkkeUdfores ? `- ⚠️ ${task.rain} mm regn` : "- ✅"): ""}
+    </label>
 
-        <input
-            class="dateInput"
-            type="date"
-            value="${task.taskDate || ""}"
-        >
+
     </article>`;
     
     // Find checkboxen, knappen og datofeltet inde i det nye li-element
@@ -100,17 +143,30 @@ function renderList(){
     const dateInput = li.querySelector(".dateInput");
     const dateDisplay = li.querySelector(".taskDate");
 
+    const outdoorInput = li.querySelector(".outdoorInput");
+    outdoorInput.addEventListener("change", () => {
+    task.isOutdoor = outdoorInput.checked;
+
+    saveTasks();
+    renderList();
+});
+
     //Åbner kalenderen, når der trykkes på knappen
     calBtn.addEventListener("click", () => {
     dateInput.showPicker();
+});
 
-    //Gemmer den valgte dato
-    dateInput.addEventListener("change", () => {
+ //Gemmer den valgte dato
+    dateInput.addEventListener("change", async () => {
+
     task.taskDate = dateInput.value;
+
+     // Hent nedbør for den dato, brugeren har valgt, og gem resultatet på opgaven
+    task.rain = await getWeather(task.taskDate);
     dateDisplay.textContent = task.taskDate;
 
     saveTasks();
-});
+    renderList();
 });
 
         // Reager, når brugeren klikker på checkboxen

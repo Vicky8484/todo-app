@@ -5,24 +5,13 @@
 --doneList: #e9e9aa;
 --headerbg: #83a883;
 --taskbg: #d8a3ac;
---donebgani: rainbow 5s ease;
 }
 
 [data-theme="dark"]{
 --bodybg: #232323;
 --mainbg: #3e3e3e;
---ogList: #ffc0cb;
---doneList: #e9e9aa;
---headerbg: #83a883;
---taskbg: #d8a3ac;
---donebgani: rainbow 5s ease;
+--ogList: #bd8f97;
+--doneList: #a9a97d;
+--headerbg: #5a725a;
+--taskbg: #9a757b;
 }
-
-/* @keyframes rainbow{
-    from{
-        background-color: var(--doneList);
-    }
-    to{
-        background-color: #516a6d;
-    }
-} */
