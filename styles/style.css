@@ -190,6 +190,10 @@ background-color: #a883a2;
     align-self: center;
 }
 
+.taskDate {
+  color: #674551;
+}
+
 /***********H1'ER + A'er + KNAPPER**********/
 #showNumber {
     margin-left: 1.4rem;

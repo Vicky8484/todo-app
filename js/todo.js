@@ -53,7 +53,6 @@ function createTask(){
 
     // Gem ændringen og tegn listen på ny, så den nye opgave vises.
     saveTasks();
-    console.log(taskArr);
     renderList();
 }
 
@@ -61,8 +60,8 @@ function createTask(){
 async function getWeather(date){
     // API'et bruger koordinaterne for København og returnerer nedbør i millimeter
     const url = `https://api.open-meteo.com/v1/forecast?latitude=55.68&longitude=12.57&daily=precipitation_sum&timezone=auto&start_date=${date}&end_date=${date}`;
-    const svar = await fetch(url);
-    const data = await svar.json();
+    const svar = await fetch(url); // henter selve svaret fra serveren
+    const data = await svar.json(); // indholdet i svaret omdannet fra JSON til JS-object
 
     // Hvis API'et ikke kan finde vejrdata, gemmes ingen regnmængde
     if(data.error){
@@ -144,6 +143,7 @@ function renderList(){
     const dateDisplay = li.querySelector(".taskDate");
 
     const outdoorInput = li.querySelector(".outdoorInput");
+    
     outdoorInput.addEventListener("change", () => {
     task.isOutdoor = outdoorInput.checked;
 
