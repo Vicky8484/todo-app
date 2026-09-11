@@ -275,4 +275,18 @@ h4:hover{
     .taskDate{
         margin-left: 0;
     }
+
+    html, body{
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
+  -webkit-tap-highlight-color: transparent;
+  
+  /****Forhindrer at siden zoomer når man trykker hurtigt*****/
+touch-action: manipulation;
+}
+
+button{
+padding: 0.5rem;
+padding-block: 0.5rem;
+  font-size: x-small;
+}
 }

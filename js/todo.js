@@ -16,9 +16,8 @@ const showNumber = document.querySelector("#showNumber");
 const showNumber2 = document.querySelector("#showNumber2");
 
 // Gemmer hele opgavelisten i browserens localStorage
-// JSON.stringify laver JavaScript-arrayet om til tekst, så det kan gemmes
 function saveTasks(){
-    localStorage.setItem("tasks", JSON.stringify(taskArr));
+    localStorage.setItem("tasks", JSON.stringify(taskArr)); // JSON.stringify laver JavaScript-arrayet om til tekst, så det kan gemmes
 }
 
 // Når brugeren klikker på knappen, skal createTask-funktionen køre
@@ -40,8 +39,7 @@ function createTask(){
         taskTxt: taskInput.value, // Selve teksten på opgaven
         taskDone: false, // Nye opgaver er ikke færdige endnu
         taskDate: "", // Tilføjer en dato til hver ny opgave, som starter tom
-        // Bruges til at afgøre, om opgaven skal vurderes ud fra vejret
-        isOutdoor: false,
+        isOutdoor: false, // Bruges til at afgøre, om opgaven skal vurderes ud fra vejret
         id: self.crypto.randomUUID(), // Et unikt id til opgaven
     }
 
@@ -141,7 +139,6 @@ function renderList(){
     const calBtn = li.querySelector(".calendarBtn");
     const dateInput = li.querySelector(".dateInput");
     const dateDisplay = li.querySelector(".taskDate");
-
     const outdoorInput = li.querySelector(".outdoorInput");
     
     outdoorInput.addEventListener("change", () => {
